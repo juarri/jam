@@ -1,5 +1,5 @@
 {
-  "name": "initial",
+  "name": "jam",
   "private": true,
   "scripts": {
     "build": "turbo build",

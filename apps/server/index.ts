@@ -1,10 +1,4 @@
-import { Hono } from "hono";
-import { logger } from "hono/logger";
-
-const app = new Hono();
-
-app.use(logger());
-app.get("/", (c) => c.text("Hello Hono!"));
+import { app } from "./app";
 
 const server = Bun.serve({
   port: 3000,
@@ -12,4 +6,3 @@ const server = Bun.serve({
 });
 
 console.log(`Listening on http://localhost:${server.port} ...`);
-

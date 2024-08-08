@@ -6,6 +6,10 @@
     "dev": "bun --watch ./index.ts",
     "start": "bun  ./index.ts"
   },
+  "dependencies": {
+    "@hono/zod-validator": "^0.2.2",
+    "@repo/schemas": "workspace:*"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -13,4 +17,3 @@
     "typescript": "^5.0.0"
   }
 }
-
