@@ -29,7 +29,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "exports": {
-    ".": "./src/components/index.ts",
+    "./components/*": "./src/components/ui/*.tsx",
     "./main.css": "./main.css",
     "./postcss.config": "./postcss.config.js",
     "./tailwind.config": "./tailwind.config.js",

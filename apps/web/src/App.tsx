@@ -1,6 +1,12 @@
-import { Button } from "@repo/ui";
+import { Button } from "@repo/ui/components/button";
+
 function App() {
-  return <Button onClick={() => console.log("kappa")}>MyButton</Button>;
+  return (
+    <div>
+      <h1 className="text-red-500">Kappa</h1>
+      <Button onClick={() => console.log("kappa")}>MyButton</Button>
+    </div>
+  );
 }
 
 export default App;
