@@ -1,15 +1,21 @@
+import type { Sequencer } from "@repo/schemas/sequencer";
+
+import { api } from "@repo/api";
+
 import { useState, useEffect } from "react";
 
 import { Button } from "@repo/ui/components/button";
-import type { Sequencers } from "@repo/schemas/sequencer";
 
 function App() {
-  const [sequencers, setSequencers] = useState<Sequencers>([]);
+  const [sequencers, setSequencers] = useState<Sequencer | null>(null);
 
   useEffect(() => {
     const fetchSequencers = async () => {
-      const response = await fetch("/api/sequencers");
-      const data = await response.json();
+      const res = await api.sequencers[":id"].$get({
+        param: { id: "1" },
+      });
+
+      const data = await res.json();
 
       setSequencers(data);
     };
@@ -19,7 +25,6 @@ function App() {
 
   return (
     <div>
-      <h1 className="text-red-500">Kappa</h1>
       <Button onClick={() => console.log("kappa")}>MyButton</Button>
       <pre className="text-xs">{JSON.stringify(sequencers, null, 2)}</pre>
     </div>

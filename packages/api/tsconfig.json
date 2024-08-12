@@ -1,5 +1,4 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     // Enable latest features
     "lib": ["ESNext", "DOM"],
@@ -23,12 +22,6 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false,
-
-    "baseUrl": ".",
-    "paths": {
-      "@ui/*": ["./src/*"]
-    }
-  },
-  "exclude": ["node_modules", "dist"]
+    "noPropertyAccessFromIndexSignature": false
+  }
 }

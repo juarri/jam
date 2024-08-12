@@ -17,3 +17,17 @@ export type Sequencers = z.infer<typeof sequencersSchema>;
 export const createSequencerSchema = sequencerSchema.omit({ id: true });
 
 export type CreateSequencer = z.infer<typeof createSequencerSchema>;
+
+export const getSequencerSchema = sequencerSchema.pick({ id: true });
+
+export type GetSequencer = z.infer<typeof getSequencerSchema>;
+
+export const updateSequencerSchema = sequencerSchema
+  .omit({ id: true })
+  .partial();
+
+export type UpdateSequencer = z.infer<typeof updateSequencerSchema>;
+
+export const deleteSequencerSchema = sequencerSchema.pick({ id: true });
+
+export type DeleteSequencer = z.infer<typeof deleteSequencerSchema>;

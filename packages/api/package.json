@@ -1,15 +1,11 @@
 {
-  "name": "server",
+  "name": "@repo/api",
   "module": "index.ts",
   "type": "module",
-  "scripts": {
-    "dev": "bun --watch ./index.ts",
-    "start": "bun  ./index.ts"
-  },
   "dependencies": {
-    "@repo/api": "workspace:*",
     "@hono/zod-validator": "^0.2.2",
-    "@repo/schemas": "workspace:*"
+    "@repo/schemas": "workspace:*",
+    "hono": "^4.5.5"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -18,7 +14,7 @@
     "typescript": "^5.0.0"
   },
   "exports": {
-    "./app": "./app.ts",
-    "./routes/*": "./routes/*.ts"
+    ".": "./index.ts",
+    "./routes/*": "./src/routes/*.ts"
   }
 }
