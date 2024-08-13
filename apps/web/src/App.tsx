@@ -1,32 +1,28 @@
-import type { Sequencer } from "@repo/schemas/sequencer";
-
 import { api } from "@repo/api";
 
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
-import { Button } from "@repo/ui/components/button";
+async function getSequencer() {
+  const res = await api.sequencers[":id"].$get({
+    param: { id: "1" },
+  });
+
+  const data = await res.json();
+
+  return data;
+}
 
 function App() {
-  const [sequencers, setSequencers] = useState<Sequencer | null>(null);
-
-  useEffect(() => {
-    const fetchSequencers = async () => {
-      const res = await api.sequencers[":id"].$get({
-        param: { id: "1" },
-      });
-
-      const data = await res.json();
-
-      setSequencers(data);
-    };
-
-    fetchSequencers();
-  }, []);
+  const sequencerQuery = useQuery({
+    queryKey: ["sequencer"],
+    queryFn: getSequencer,
+  });
 
   return (
     <div>
-      <Button onClick={() => console.log("kappa")}>MyButton</Button>
-      <pre className="text-xs">{JSON.stringify(sequencers, null, 2)}</pre>
+      <pre className="text-xs">
+        {JSON.stringify(sequencerQuery.data, null, 2)}
+      </pre>
     </div>
   );
 }

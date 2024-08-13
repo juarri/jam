@@ -12,10 +12,10 @@
     "@repo/schemas": "workspace:*"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "^1.1.6"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.5.4"
   },
   "exports": {
     "./app": "./app.ts",

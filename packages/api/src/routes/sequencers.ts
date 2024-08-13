@@ -32,12 +32,14 @@ export const sequencersRouter = new Hono()
   .post("/", zValidator("json", createSequencerSchema), async (c) => {
     const sequencer = c.req.valid("json");
 
-    fakeSequencers.push({
+    const createdSequence = {
       ...sequencer,
       id: String(fakeSequencers.length + 1),
-    });
+    };
 
-    return c.json(sequencer);
+    fakeSequencers.push(createdSequence);
+
+    return c.json(createdSequence);
   })
   .get("/", async (c) => {
     return c.json(fakeSequencers);
@@ -46,10 +48,6 @@ export const sequencersRouter = new Hono()
     const { id } = c.req.param();
 
     const sequencer = fakeSequencers.find((s) => s.id === id);
-
-    if (!sequencer) {
-      return c.notFound();
-    }
 
     return c.json(sequencer);
   });
