@@ -1,3 +1,9 @@
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/")({
+  component: Index,
+});
+
 import { api } from "@repo/api";
 
 import { useQuery } from "@tanstack/react-query";
@@ -12,7 +18,7 @@ async function getSequencer() {
   return data;
 }
 
-function App() {
+function Index() {
   const sequencerQuery = useQuery({
     queryKey: ["sequencer"],
     queryFn: getSequencer,
@@ -27,4 +33,4 @@ function App() {
   );
 }
 
-export default App;
+export default Index;
