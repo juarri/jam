@@ -33,10 +33,14 @@ export const sequencerTable = sqliteTable("sequencer", {
   steps: text("steps", { mode: "json" }).$type<Steps>().notNull(),
 });
 
-export const sequencerSchema = createSelectSchema(sequencerTable);
+export const sequencerSchema = createSelectSchema(sequencerTable, {
+  steps: stepsSchema,
+});
 export type Sequencer = z.infer<typeof sequencerSchema>;
 
-export const insertSequencerSchema = createInsertSchema(sequencerTable);
+export const insertSequencerSchema = createInsertSchema(sequencerTable, {
+  steps: stepsSchema,
+});
 export type InsertSequencer = z.infer<typeof insertSequencerSchema>;
 
 export const getSequencerSchema = sequencerSchema.pick({ id: true });

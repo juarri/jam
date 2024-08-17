@@ -4,9 +4,9 @@ import { Hono } from "hono";
 import {
   insertSequencerSchema,
   sequencerTable,
-} from "@repo/db/schemas/sequencer";
+} from "@jam/db/schemas/sequencer";
 
-import { db } from "@repo/db";
+import { db } from "@jam/db";
 import { eq } from "drizzle-orm";
 
 export const sequencersRouter = new Hono()

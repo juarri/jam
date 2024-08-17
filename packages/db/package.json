@@ -3,18 +3,18 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun db:studio",
+    "dev": "bun run db:studio",
     "db:up": "drizzle-kit up",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
-    "@types/bun": "latest",
+    "@types/bun": "^1.1.6",
     "drizzle-kit": "^0.24.0"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@libsql/client": "^0.9.0",

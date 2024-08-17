@@ -13,6 +13,11 @@ export const userTable = sqliteTable("user", {
   picture: text("picture"),
 });
 
+export const insertUserSchema = createInsertSchema(userTable);
+export type InsertUser = z.infer<typeof insertUserSchema>;
+export const selectUserSchema = createSelectSchema(userTable);
+export type User = z.infer<typeof selectUserSchema>;
+
 export const sessionTable = sqliteTable("session", {
   id: text("id").notNull().primaryKey(),
   userId: text("user_id")
@@ -21,12 +26,7 @@ export const sessionTable = sqliteTable("session", {
   expiresAt: integer("expires_at").notNull(),
 });
 
-export const insertUserSchema = createInsertSchema(userTable);
-export const selectUserSchema = createSelectSchema(userTable);
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = z.infer<typeof selectUserSchema>;
-
 export const insertSessionSchema = createInsertSchema(sessionTable);
-export const selectSessionSchema = createSelectSchema(sessionTable);
 export type InsertSession = z.infer<typeof insertSessionSchema>;
+export const selectSessionSchema = createSelectSchema(sessionTable);
 export type Session = z.infer<typeof selectSessionSchema>;

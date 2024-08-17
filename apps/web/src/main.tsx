@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import "@repo/ui/main.css";
+import "@jam/ui/main.css";
 
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 

@@ -4,7 +4,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-import { api } from "@repo/api";
+import { api } from "@jam/api";
 
 import { useQuery } from "@tanstack/react-query";
 

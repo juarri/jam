@@ -5,7 +5,6 @@ import { logger } from "hono/logger";
 import { apiRoutes } from "@repo/api";
 
 export const app = new Hono()
-
   .use(logger())
 
   .route("/", apiRoutes)
