@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@jam/web",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@repo/schemas": "workspace:*",
-    "@repo/ui": "workspace:*",
+    "@jam/ui": "workspace:*",
     "@tanstack/react-query": "^5.51.23",
     "@tanstack/react-router": "^1.47.1",
     "react": "^18.3.1",

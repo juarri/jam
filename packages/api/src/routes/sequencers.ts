@@ -1,53 +1,40 @@
-import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
+import { Hono } from "hono";
 
-import type { Sequencer } from "@repo/schemas/sequencer";
-import { createSequencerSchema } from "@repo/schemas/sequencer";
+import {
+  insertSequencerSchema,
+  sequencerTable,
+} from "@repo/db/schemas/sequencer";
 
-import type { Instrument } from "@repo/schemas/instrument";
-import type { Sequence } from "@repo/schemas/sequence";
-
-const fakeInstrument: Instrument = {
-  id: "1",
-  name: "Instrument 1",
-  sample: "/samples/sample1.mp3",
-};
-
-const fakeSequence: Sequence = [true, false, true, false];
-
-const fakeSequencer: Sequencer = {
-  id: "1",
-  name: "Sequencer 1",
-  steps: [
-    { instrument: fakeInstrument, sequence: fakeSequence },
-    { instrument: fakeInstrument, sequence: fakeSequence },
-    { instrument: fakeInstrument, sequence: fakeSequence },
-    { instrument: fakeInstrument, sequence: fakeSequence },
-  ],
-};
-
-const fakeSequencers: Sequencer[] = [fakeSequencer];
+import { db } from "@repo/db";
+import { eq } from "drizzle-orm";
 
 export const sequencersRouter = new Hono()
-  .post("/", zValidator("json", createSequencerSchema), async (c) => {
+  .post("/", zValidator("json", insertSequencerSchema), async (c) => {
     const sequencer = c.req.valid("json");
 
-    const createdSequence = {
-      ...sequencer,
-      id: String(fakeSequencers.length + 1),
-    };
+    const createdSequencer = db
+      .insert(sequencerTable)
+      .values(sequencer)
+      .returning();
 
-    fakeSequencers.push(createdSequence);
-
-    return c.json(createdSequence);
+    return c.json(createdSequencer);
   })
   .get("/", async (c) => {
-    return c.json(fakeSequencers);
+    const sequencers = await db.query.sequencerTable.findMany();
+
+    return c.json(sequencers);
   })
   .get("/:id", async (c) => {
     const { id } = c.req.param();
 
-    const sequencer = fakeSequencers.find((s) => s.id === id);
+    const sequencer = await db.query.sequencerTable.findFirst({
+      where: eq(sequencerTable.id, Number(id)),
+    });
+
+    if (!sequencer) {
+      throw new Error(`Sequencer with id ${id} not found`);
+    }
 
     return c.json(sequencer);
   });

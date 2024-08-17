@@ -13,6 +13,10 @@ async function getSequencer() {
     param: { id: "1" },
   });
 
+  if (!res.ok) {
+    throw new Error("Failed to fetch sequencer.");
+  }
+
   const data = await res.json();
 
   return data;

@@ -4,14 +4,14 @@ import { logger } from "hono/logger";
 
 import { apiRoutes } from "@repo/api";
 
-export const app = new Hono();
+export const app = new Hono()
 
-app.use(logger());
+  .use(logger())
 
-app.route("/", apiRoutes);
+  .route("/", apiRoutes)
 
-app.get(serveStatic({ path: "./dist" }));
-app.get(serveStatic({ path: "./dist/index.html" }));
+  .get(serveStatic({ path: "./dist" }))
+  .get(serveStatic({ path: "./dist/index.html" }));
 
 const server = Bun.serve({
   fetch: app.fetch,

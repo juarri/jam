@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@jam/server",
   "module": "index.ts",
   "type": "module",
   "scripts": {
@@ -7,9 +7,8 @@
     "start": "bun  ./index.ts"
   },
   "dependencies": {
-    "@repo/api": "workspace:*",
-    "@hono/zod-validator": "^0.2.2",
-    "@repo/schemas": "workspace:*"
+    "@jam/api": "workspace:*",
+    "@hono/zod-validator": "^0.2.2"
   },
   "devDependencies": {
     "@types/bun": "^1.1.6"

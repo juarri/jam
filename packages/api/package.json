@@ -1,10 +1,10 @@
 {
-  "name": "@repo/api",
+  "name": "@jam/api",
   "module": "index.ts",
   "type": "module",
   "dependencies": {
     "@hono/zod-validator": "^0.2.2",
-    "@repo/schemas": "workspace:*",
+    "@jam/db": "workspace:*",
     "hono": "^4.5.5"
   },
   "devDependencies": {
