@@ -20,11 +20,6 @@ export const sequencersRouter = new Hono()
 
     return c.json(createdSequencer);
   })
-  .get("/", async (c) => {
-    const sequencers = await db.query.sequencerTable.findMany();
-
-    return c.json(sequencers);
-  })
   .get("/:id", async (c) => {
     const { id } = c.req.param();
 

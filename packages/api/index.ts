@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { hc } from "hono/client";
 
 import { sequencersRouter } from "./src/routes/sequencers";
+import { db } from "@jam/db";
 
 const app = new Hono();
 
@@ -14,3 +15,7 @@ type ApiRoutes = typeof apiRoutes;
 const apiClient = hc<ApiRoutes>("/");
 
 export const api = apiClient.api;
+
+const kappa = await db.query.sequencerTable.findMany();
+
+console.log(kappa);
