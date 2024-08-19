@@ -18,3 +18,5 @@ export const kappa = async () => {
   console.log(sequencers);
   return sequencers;
 };
+
+kappa();
