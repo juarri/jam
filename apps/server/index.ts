@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import { serveStatic } from "hono/bun";
 import { logger } from "hono/logger";
+import { serveStatic } from "hono/bun";
 
 import { apiRoutes } from "@repo/api";
 
