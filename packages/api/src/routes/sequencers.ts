@@ -27,9 +27,10 @@ export const sequencersRouter = new Hono()
       where: eq(sequencerTable.id, Number(id)),
     });
 
-    if (!sequencer) {
-      throw new Error(`Sequencer with id ${id} not found`);
-    }
-
     return c.json(sequencer);
+  })
+  .get("/", async (c) => {
+    const sequencers = await db.query.sequencerTable.findMany();
+
+    return c.json(sequencers);
   });

@@ -1,3 +1,4 @@
+import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
@@ -5,8 +6,13 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  define: { "process.env": process.env },
   plugins: [react(), TanStackRouterVite()],
+  resolve: {
+    alias: {
+      "@": path.resolve(import.meta.dir, "./src"),
+      "@lib": path.resolve(import.meta.dir, "./src/lib"),
+    },
+  },
   server: {
     proxy: {
       "/api": {

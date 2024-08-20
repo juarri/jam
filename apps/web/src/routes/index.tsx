@@ -4,29 +4,11 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-import { api } from "@jam/api";
-
 import { useQuery } from "@tanstack/react-query";
-
-async function getSequencer() {
-  const res = await api.sequencers[":id"].$get({
-    param: { id: "1" },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch sequencer.");
-  }
-
-  const data = await res.json();
-
-  return data;
-}
+import { sequencersQueryOptions } from "@lib/api";
 
 function Index() {
-  const sequencerQuery = useQuery({
-    queryKey: ["sequencer"],
-    queryFn: getSequencer,
-  });
+  const sequencerQuery = useQuery(sequencersQueryOptions);
 
   return (
     <div>

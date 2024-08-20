@@ -12,11 +12,3 @@ const client = createClient({
 });
 
 export const db = drizzle(client, { schema });
-
-export const kappa = async () => {
-  const sequencers = await db.query.sequencerTable.findMany();
-  console.log(sequencers);
-  return sequencers;
-};
-
-kappa();

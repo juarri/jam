@@ -3,26 +3,14 @@ import { hc } from "hono/client";
 
 import { sequencersRouter } from "./src/routes/sequencers";
 
-import { db, kappa } from "@jam/db";
+const app = new Hono();
 
-// const app = new Hono();
-//
-// export const apiRoutes = app
-//   .basePath("/api")
-//   .route("/sequencers", sequencersRouter);
-//
-// type ApiRoutes = typeof apiRoutes;
-//
-// const apiClient = hc<ApiRoutes>("/");
-//
-// export const api = apiClient.api;
+export const apiRoutes = app
+  .basePath("/api")
+  .route("/sequencers", sequencersRouter);
 
-// const kappa = async () => {
-//   const sequencers = await db.query.sequencerTable.findMany();
-//   console.log(sequencers);
-//   return sequencers;
-// };
-//
-// kappa();
+export type ApiRoutes = typeof apiRoutes;
 
-kappa();
+const apiClient = hc<ApiRoutes>("/");
+
+export const api = apiClient.api;
