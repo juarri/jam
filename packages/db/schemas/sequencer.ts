@@ -14,12 +14,12 @@ export type Instrument = z.infer<typeof instrumentSchema>;
 export const sequenceSchema = z.array(z.boolean());
 export type Sequence = z.infer<typeof sequenceSchema>;
 
-export const stepsSchema = z
-  .object({
+export const stepsSchema = z.array(
+  z.object({
     instrument: instrumentSchema,
     sequence: sequenceSchema,
-  })
-  .array();
+  }),
+);
 export type Steps = z.infer<typeof stepsSchema>;
 
 export const sequencerTable = sqliteTable("sequencer", {

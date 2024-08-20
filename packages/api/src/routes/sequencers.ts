@@ -13,6 +13,8 @@ export const sequencersRouter = new Hono()
   .post("/", zValidator("json", insertSequencerSchema), async (c) => {
     const sequencer = c.req.valid("json");
 
+    console.log(JSON.stringify(sequencer, null, 2));
+
     const createdSequencer = db
       .insert(sequencerTable)
       .values(sequencer)
